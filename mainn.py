@@ -14,7 +14,7 @@ def lagra_citat():
     citat_data = json.loads(response.text)
     citat_list = citat_data["quotes"]
     for citat in citat_list:
-        redis_db.rpush("citat", citat["quote"])
+        redis_db.rpush("citat", citat["quote"] + " ##by author : " + citat["author"])
 
 
 # Funktion för att hämta ett slumpmässigt citat från Redis-databasen
