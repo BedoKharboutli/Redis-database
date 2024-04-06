@@ -4,6 +4,4 @@ Denna enkla applikation är en citatgenerator som hämtar slumpmässiga citat fr
 
 \_Get a random quote: Välj detta alternativ för att visa ett slumpmässigt citat från Redis-databasen.
 
-\_Save quotes to database: Använd detta alternativ för att hämta nya citat från webbkällan och spara dem i Redis-databasen.
-
 \_Exit: Avsluta programmet.
