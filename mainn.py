@@ -20,6 +20,8 @@ def lagra_citat():
 # Funktion för att hämta ett slumpmässigt citat från Redis-databasen
 def slumpmassigt_citat():
     antal_citat = redis_db.llen("citat")
+    if antal_citat == 0:
+        lagra_citat()
     slumpmässigt_index = random.randint(0, antal_citat)
     citat = redis_db.lindex("citat", slumpmässigt_index)
     return citat
@@ -28,8 +30,7 @@ def slumpmassigt_citat():
 def main():
     while True:
         print("1. Get a random quote")
-        print("2. Save quotes to database")
-        print("3. Exit")
+        print("2. Exit")
         choice = input("Enter your choice: ")
 
         if choice == "1":
@@ -37,11 +38,6 @@ def main():
             print("----->", slumpmassigt_citat(), "<-----")
 
         elif choice == "2":
-            # Lagra citat i Redis-databasen
-            lagra_citat()
-            print("Quotes saved to database!")
-
-        elif choice == "3":
             break
 
         else:
