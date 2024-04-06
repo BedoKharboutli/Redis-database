@@ -22,17 +22,14 @@ def slumpmassigt_citat():
     antal_citat = redis_db.llen("citat")
     slumpmässigt_index = random.randint(0, antal_citat)
     citat = redis_db.lindex("citat", slumpmässigt_index)
-    return citat.decode("utf-8")
-
-
-# Lagra citat i Redis-databasen
-lagra_citat()
+    return citat
 
 
 def main():
     while True:
         print("1. Get a random quote")
-        print("2. Exit")
+        print("2. Save quotes to database")
+        print("3. Exit")
         choice = input("Enter your choice: ")
 
         if choice == "1":
@@ -40,6 +37,11 @@ def main():
             print("----->", slumpmassigt_citat(), "<-----")
 
         elif choice == "2":
+            # Lagra citat i Redis-databasen
+            lagra_citat()
+            print("Quotes saved to database!")
+
+        elif choice == "3":
             break
 
         else:
